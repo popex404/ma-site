@@ -2372,6 +2372,13 @@
     // Las páginas disponibles: 'home', 'contable', 'digital', 'laboral'
     const pages = ['home', 'contable', 'digital', 'laboral'];
 
+    // Base path detection — soporta deploys en /ma-site/ (GitHub Pages project site)
+    // y en root (custom domain como azetas365.com/). Sin esto, pushState reescribe
+    // la URL a '/' y se pierde el prefijo /ma-site/ en el address bar.
+    const BASE_PATH = window.location.pathname
+      .replace(/\/(contable|digital|laboral)\/?$/, '')
+      .replace(/\/$/, '');
+
     function showPage(pageName) {
       // Ocultar todas las páginas
       pages.forEach(p => {
@@ -2391,13 +2398,13 @@
 
       // Actualizar URL visible (solo visual, no recarga)
       const urls = {
-        home: '/',
-        contable: '/contable',
-        digital: '/digital',
-        laboral: '/laboral'
+        home:     BASE_PATH + '/',
+        contable: BASE_PATH + '/contable',
+        digital:  BASE_PATH + '/digital',
+        laboral:  BASE_PATH + '/laboral'
       };
       if (history.pushState) {
-        history.pushState(null, '', urls[pageName] || '/');
+        history.pushState(null, '', urls[pageName] || BASE_PATH + '/');
       }
 
       // Reactivar animaciones en la nueva página
