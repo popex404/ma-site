@@ -7,7 +7,7 @@
 
   <!-- ======= FUENTES ======= -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <style>
@@ -15,19 +15,36 @@
        VARIABLES GLOBALES – edita aquí los colores
     ============================================= */
     :root {
-      --azul:     #0B2B5C;   /* Azul oscuro principal */
-      --azul-mid: #1A4A8A;   /* Azul medio */
-      --cyan:     #2EB5E8;   /* Cyan del logo */
-      --naranja:  #F5831F;   /* Naranja/acento CTA */
-      --gris-claro: #F4F6FA;
-      --gris-borde: #DDE3EE;
-      --texto:    #1A1E2E;
+      /* ===== MARCA OFICIAL — AZ Consultoría brand kit ===== */
+      --azul:        #09699F;   /* Medium Persian Blue   */
+      --cyan:        #2393D1;   /* Cyan Cornflower Blue  */
+      --texto:       #3C3C3B;   /* Black Olive           */
+
+      /* ===== Derivado off-brand (TBD con Mario 15/05) ===== */
+      --azul-mid:    #1A4A8A;   /* Mid blue para gradientes — fuera de marca */
+
+      /* ===== Acentos funcionales off-brand (TBD con Mario 15/05) ===== */
+      --naranja:     #F5831F;   /* CTA principal — no existe en la marca */
+      --naranja-h:   #e07015;   /* Hover del naranja */
+      --naranja-d:   #d06010;   /* Dark del naranja (gradientes) */
+      --verde:       #2ED6A0;   /* Accent Derecho Laboral — no existe en la marca */
+      --verde-d:     #1aab7e;   /* Hover del verde */
+
+      /* ===== Neutros ===== */
+      --gris-claro:  #F4F6FA;
+      --gris-borde:  #DDE3EE;
       --texto-suave: #5A6379;
-      --blanco:   #FFFFFF;
-      --sombra:   0 4px 24px rgba(11,43,92,0.10);
-      --sombra-lg: 0 12px 48px rgba(11,43,92,0.16);
-      --radio:    12px;
-      --trans:    0.3s cubic-bezier(.4,0,.2,1);
+      --blanco:      #FFFFFF;
+
+      /* ===== FUENTES — cambiar acá afecta TODO el sitio ===== */
+      --font-heading: 'Poppins', sans-serif;   /* Poppins Black (900) según marca */
+      --font-body:    'Poppins', sans-serif;   /* Misma familia, otros pesos */
+
+      /* ===== Sombras / radii / transiciones ===== */
+      --sombra:    0 4px 24px rgba(9,105,159,0.10);
+      --sombra-lg: 0 12px 48px rgba(9,105,159,0.16);
+      --radio:     12px;
+      --trans:     0.3s cubic-bezier(.4,0,.2,1);
     }
 
     /* =============================================
@@ -36,12 +53,12 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--font-body);
       color: var(--texto);
       background: var(--blanco);
       overflow-x: hidden;
     }
-    h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; line-height: 1.15; }
+    h1,h2,h3,h4,h5 { font-family: var(--font-heading); line-height: 1.15; }
     a { text-decoration: none; color: inherit; }
     img { max-width: 100%; display: block; }
     ul { list-style: none; }
@@ -58,7 +75,7 @@
     /* Etiqueta de sección */
     .label {
       display: inline-block;
-      font-family: 'Syne', sans-serif;
+      font-family: var(--font-heading);
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 2.5px;
@@ -93,7 +110,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-family: 'Syne', sans-serif;
+      font-family: var(--font-heading);
       font-size: 15px;
       font-weight: 700;
       border-radius: 8px;
@@ -109,7 +126,7 @@
       box-shadow: 0 4px 20px rgba(245,131,31,0.30);
     }
     .btn-primary:hover {
-      background: #e07015;
+      background: var(--naranja-h);
       transform: translateY(-2px);
       box-shadow: 0 8px 28px rgba(245,131,31,0.40);
     }
@@ -175,7 +192,7 @@
       object-fit: contain;
     }
     .logo-text {
-      font-family: 'Syne', sans-serif;
+      font-family: var(--font-heading);
       font-weight: 800;
       font-size: 18px;
       color: var(--azul);
@@ -197,7 +214,7 @@
       gap: 4px;
     }
     .nav-links a {
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--font-body);
       font-size: 14px;
       font-weight: 500;
       color: var(--texto-suave);
@@ -289,7 +306,7 @@
       color: rgba(255,255,255,0.6);
     }
     .footer-col h4 {
-      font-family: 'Syne', sans-serif;
+      font-family: var(--font-heading);
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 1.5px;
@@ -381,7 +398,7 @@
       padding: 12px 16px;
       border: 1.5px solid var(--gris-borde);
       border-radius: 8px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--font-body);
       font-size: 15px;
       color: var(--texto);
       background: var(--blanco);
@@ -483,7 +500,7 @@
       padding-top: 28px;
     }
     .hero-stat .num {
-      font-family: 'Syne', sans-serif;
+      font-family: var(--font-heading);
       font-size: 28px;
       font-weight: 800;
       color: var(--blanco);
@@ -504,7 +521,7 @@
       position: relative;
     }
     .hero-card-title {
-      font-family: 'Syne', sans-serif;
+      font-family: var(--font-heading);
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 1.5px;
@@ -538,9 +555,9 @@
     }
     .pill-blue  { background: rgba(46,181,232,0.20); color: var(--cyan); }
     .pill-orange { background: rgba(245,131,31,0.20); color: var(--naranja); }
-    .pill-green { background: rgba(46,214,160,0.20); color: #2ED6A0; }
+    .pill-green { background: rgba(46,214,160,0.20); color: var(--verde); }
     .service-pill .pill-info h4 {
-      font-family: 'Syne', sans-serif;
+      font-family: var(--font-heading);
       font-size: 14px;
       font-weight: 700;
       color: var(--blanco);
@@ -558,7 +575,7 @@
       color: white;
       border-radius: 12px;
       padding: 12px 18px;
-      font-family: 'Syne', sans-serif;
+      font-family: var(--font-heading);
       font-size: 12px;
       font-weight: 700;
       text-align: center;
@@ -620,7 +637,7 @@
       margin-bottom: 20px;
     }
     .card-link {
-      font-family: 'Syne', sans-serif;
+      font-family: var(--font-heading);
       font-size: 13px;
       font-weight: 700;
       color: var(--azul);
@@ -706,7 +723,7 @@
       text-align: center;
     }
     .metric-box .val {
-      font-family: 'Syne', sans-serif;
+      font-family: var(--font-heading);
       font-size: 28px;
       font-weight: 800;
       color: var(--cyan);
@@ -722,8 +739,8 @@
       transition: var(--trans);
       position: relative;
     }
-    .metric-cta:hover { background: #e07015; }
-    .metric-cta p { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: white; }
+    .metric-cta:hover { background: var(--naranja-h); }
+    .metric-cta p { font-family: var(--font-heading); font-size: 14px; font-weight: 700; color: white; }
     .metric-cta span { font-size: 12px; color: rgba(255,255,255,0.75); }
 
     /* Equipo */
@@ -752,15 +769,15 @@
       border-radius: 50%;
       margin: 0 auto 14px;
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Syne', sans-serif;
+      font-family: var(--font-heading);
       font-size: 26px;
       font-weight: 800;
       color: var(--blanco);
     }
     .av-azul    { background: linear-gradient(135deg, var(--azul), var(--azul-mid)); }
     .av-cyan    { background: linear-gradient(135deg, var(--cyan), #1a8cb8); }
-    .av-naranja { background: linear-gradient(135deg, var(--naranja), #d06010); }
-    .av-verde   { background: linear-gradient(135deg, #2ED6A0, #1aab7e); }
+    .av-naranja { background: linear-gradient(135deg, var(--naranja), var(--naranja-d)); }
+    .av-verde   { background: linear-gradient(135deg, var(--verde), var(--verde-d)); }
     .team-card h4 {
       font-size: 16px;
       font-weight: 800;
@@ -933,7 +950,7 @@
 
     /* Garantía */
     .garantia-banner {
-      background: linear-gradient(135deg, var(--naranja), #d06010);
+      background: linear-gradient(135deg, var(--naranja), var(--naranja-d));
       border-radius: 20px;
       padding: 40px;
       display: flex;
@@ -973,7 +990,7 @@
     }
     .paso-card:hover { transform: translateY(-4px); box-shadow: var(--sombra-lg); }
     .paso-num {
-      font-family: 'Syne', sans-serif;
+      font-family: var(--font-heading);
       font-size: 48px;
       font-weight: 800;
       color: var(--gris-borde);
@@ -1034,7 +1051,7 @@
       background: var(--blanco);
     }
     .metrica-card .big-num {
-      font-family: 'Syne', sans-serif;
+      font-family: var(--font-heading);
       font-size: 48px;
       font-weight: 800;
       color: var(--azul);
@@ -1045,7 +1062,7 @@
     /* =============================================
        LANDING: DIGITAL
     ============================================= */
-    .digital-hero { background: linear-gradient(135deg, #0B2B5C 0%, #1A4A8A 100%); }
+    .digital-hero { background: linear-gradient(135deg, #09699F 0%, #1A4A8A 100%); }
 
     .miedo-section { background: var(--gris-claro); }
     .miedo-cards {
@@ -1108,7 +1125,7 @@
     /* =============================================
        LANDING: LABORAL
     ============================================= */
-    .laboral-hero { background: linear-gradient(135deg, #0B2B5C 0%, #0d3d7a 100%); }
+    .laboral-hero { background: linear-gradient(135deg, #09699F 0%, #0d3d7a 100%); }
 
     .error-section {
       background: #fff5f0;
@@ -1190,7 +1207,7 @@
     }
     .plan-card h3 { font-size: 22px; font-weight: 800; color: var(--azul); margin-bottom: 8px; }
     .plan-card .plan-precio {
-      font-family: 'Syne', sans-serif;
+      font-family: var(--font-heading);
       font-size: 28px;
       font-weight: 800;
       color: var(--naranja);
@@ -1274,11 +1291,11 @@
       <div class="logo" onclick="showPage('home')">
         <!-- Logo SVG inline basado en el logo AZ azul -->
         <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="22" cy="22" r="20" stroke="#0B2B5C" stroke-width="2.5" fill="none"/>
-          <path d="M11 31 L19 13 L27 31" stroke="#2EB5E8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M13 26 H25" stroke="#2EB5E8" stroke-width="2" stroke-linecap="round" fill="none"/>
-          <rect x="22" y="15" width="10" height="10" rx="1" stroke="#0B2B5C" stroke-width="2" fill="none"/>
-          <path d="M22 15 L32 25" stroke="#0B2B5C" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <circle cx="22" cy="22" r="20" stroke="#09699F" stroke-width="2.5" fill="none"/>
+          <path d="M11 31 L19 13 L27 31" stroke="#2393D1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M13 26 H25" stroke="#2393D1" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <rect x="22" y="15" width="10" height="10" rx="1" stroke="#09699F" stroke-width="2" fill="none"/>
+          <path d="M22 15 L32 25" stroke="#09699F" stroke-width="2" stroke-linecap="round" fill="none"/>
         </svg>
         <div class="logo-text">
           AZ Consultoría
@@ -1464,8 +1481,8 @@
           </div>
 
           <!-- Tarjeta Laboral -->
-          <div class="servicio-card fade-in" style="--stripe-color: #2ED6A0" onclick="showPage('laboral')">
-            <div class="card-icon" style="background:rgba(46,214,160,0.12);color:#2ED6A0">
+          <div class="servicio-card fade-in" style="--stripe-color: var(--verde)" onclick="showPage('laboral')">
+            <div class="card-icon" style="background:rgba(46,214,160,0.12);color:var(--verde)">
               <i class="fas fa-gavel"></i>
             </div>
             <h3>Derecho Laboral</h3>
@@ -2008,7 +2025,7 @@
     <section class="landing-hero laboral-hero">
       <div class="container">
         <div class="landing-hero-inner">
-          <div class="label" style="color:#2ED6A0;background:rgba(46,214,160,0.15);border-color:rgba(46,214,160,0.30)">
+          <div class="label" style="color:var(--verde);background:rgba(46,214,160,0.15);border-color:rgba(46,214,160,0.30)">
             Derecho Laboral · Claudio Castro
           </div>
           <!-- Edita título y bajada del landing laboral -->
@@ -2088,7 +2105,7 @@
             <div class="big-num" style="font-size:36px">📋</div>
             <p><strong>Plan de acción</strong><br>con pasos concretos para regularizar tu situación</p>
           </div>
-          <div class="metrica-card fade-in" style="border-color:#2ED6A0">
+          <div class="metrica-card fade-in" style="border-color:var(--verde)">
             <div class="big-num" style="font-size:36px">⚖️</div>
             <p><strong>Asesoría preventiva</strong><br>para evitar problemas antes de que ocurran</p>
           </div>
@@ -2213,9 +2230,9 @@
         <div class="footer-brand">
           <div class="logo">
             <svg width="36" height="36" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="22" cy="22" r="20" stroke="#2EB5E8" stroke-width="2.5" fill="none"/>
-              <path d="M11 31 L19 13 L27 31" stroke="#2EB5E8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              <path d="M13 26 H25" stroke="#2EB5E8" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <circle cx="22" cy="22" r="20" stroke="#2393D1" stroke-width="2.5" fill="none"/>
+              <path d="M11 31 L19 13 L27 31" stroke="#2393D1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M13 26 H25" stroke="#2393D1" stroke-width="2" stroke-linecap="round" fill="none"/>
               <rect x="22" y="15" width="10" height="10" rx="1" stroke="white" stroke-width="2" fill="none"/>
               <path d="M22 15 L32 25" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
             </svg>
@@ -2356,7 +2373,7 @@
       const btn = e.target.querySelector('button[type="submit"]');
       const originalText = btn.innerHTML;
       btn.innerHTML = '<i class="fas fa-check"></i> ¡Mensaje enviado! Te respondemos pronto.';
-      btn.style.background = '#2ED6A0';
+      btn.style.background = 'var(--verde)';
       btn.disabled = true;
 
       // Resetear formulario después de 3 segundos

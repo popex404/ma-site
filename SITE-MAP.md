@@ -77,42 +77,52 @@ When Mario asks to change any of these, the change has to be applied in **every*
 
 ---
 
-## Brand tokens — single source of truth at `:root` (L17-31)
+## Brand tokens — single source of truth at `:root` (updated 2026-05-13)
 
-### Colors
+Después del refactor de tokens, **todo cambio de color o fuente se hace en una sola línea del `:root`**. Las referencias en el resto del CSS usan `var(--token)`.
 
-| Token | Hex | Role |
-|---|---|---|
-| `--azul` | `#0B2B5C` | Primary dark blue — backgrounds, headings, primary text accent |
-| `--azul-mid` | `#1A4A8A` | Mid blue — gradients, secondary backgrounds |
-| `--cyan` | `#2EB5E8` | Cyan from logo — accents, links on dark bg, highlight spans |
-| `--naranja` | `#F5831F` | Orange CTA — primary buttons, attention pills, highlights |
-| `--gris-claro` | `#F4F6FA` | Light gray — alternating section background |
-| `--gris-borde` | `#DDE3EE` | Border gray |
-| `--texto` | `#1A1E2E` | Primary body text on light bg |
-| `--texto-suave` | `#5A6379` | Soft body text — descriptions, sub-copy |
-| `--blanco` | `#FFFFFF` | White |
+### Marca oficial (AZ Consultoría brand kit)
 
-**Hard-coded extras (not in `:root` — verify before changing tokens):**
+| Token | Hex | Origen | Rol |
+|---|---|---|---|
+| `--azul` | `#09699F` | Brand kit — "Medium Persian Blue" | Color primario. Hero backgrounds, footer, headings sobre fondo claro. |
+| `--cyan` | `#2393D1` | Brand kit — "Cyan Cornflower Blue" | Acento. Links sobre fondo oscuro, highlight spans, iconos de servicio. |
+| `--texto` | `#3C3C3B` | Brand kit — "Black Olive" | Texto principal del cuerpo sobre fondo claro. |
 
-| Color | Hex | Where |
-|---|---|---|
-| Verde acento | `#2ED6A0` | Stripe color for laboral card (L1467), avatar (L763), service pill 3 (L541), border (L1091/2091) |
-| Verde hover | `#1aab7e` | Avatar gradient pair (L763) |
-| Cyan oscuro | `#1a8cb8` | Avatar gradient pair (L761) |
-| Naranja oscuro | `#d06010` | Btn hover (L112), avatar gradient (L762), garantía gradient (L936) |
-| Naranja hover | `#e07015` | Btn primary hover (L112), metric-cta hover (L725) |
-| WhatsApp green | `#25D366` | Floating button, mobile menu icon (L340, L1319) |
-| Laboral hero darker | `#0d3d7a` | `.laboral-hero` gradient pair (L1111) |
-| Error section bg | `#fff5f0` | `.error-section` background (L1114) |
+### Off-brand tokens (TBD con Mario 15/05 — ver MA-reunion-01-resumen.md §Off-brand colors)
+
+Estos colores **no existen en la marca oficial** pero el sitio los usa funcionalmente. Mario los aprobó como interinos hasta la reunión.
+
+| Token | Hex | Rol | Ocurrencias |
+|---|---|---|---|
+| `--naranja` | `#F5831F` | CTA principal (todo botón "primary") | ~25 lugares |
+| `--naranja-h` | `#e07015` | Hover del naranja | 2 lugares |
+| `--naranja-d` | `#d06010` | Variante oscura para gradientes | 2 lugares |
+| `--verde` | `#2ED6A0` | Acento del servicio Derecho Laboral | 7 lugares |
+| `--verde-d` | `#1aab7e` | Hover/variante oscura del verde | 1 lugar |
+| `--azul-mid` | `#1A4A8A` | Mid-blue para gradientes Digital/Laboral | 2 lugares |
+
+### Hex codes hardcodeados (no tokenizados — funcionales o muy específicos)
+
+| Color | Hex | Dónde | Por qué no se tokenizó |
+|---|---|---|---|
+| Cyan oscuro | `#1a8cb8` | Avatar Mario Pérez gradient (L761) | Único uso, derivado del cyan |
+| Laboral hero gradient pair | `#0d3d7a` | `.laboral-hero` (L1111) | Único uso, gradient del azul |
+| Error section bg | `#fff5f0` | `.error-section` (L1114) | Background "advertencia" — único uso |
+| WhatsApp green | `#25D366` | Floating button + mobile menu (L340, L1319) | **Color oficial de WhatsApp** — excepción estándar global |
 
 ### Typography
 
-- **Headings** → `Syne` (Google Fonts) — weights `400, 600, 700, 800`. Loaded L10.
-- **Body** → `DM Sans` (Google Fonts) — weights `300, 400, 500, 600`, italic `300`. Loaded L10.
-- **Icons** → `Font Awesome 6.5.1` (CDN). Loaded L11.
+| Token | Familia | Pesos cargados | Rol |
+|---|---|---|---|
+| `--font-heading` | `'Poppins', sans-serif` | 300, 400, 500, 600, 700, 800, **900 (Black)** | Headings — la marca oficial usa Poppins Black |
+| `--font-body` | `'Poppins', sans-serif` | (mismas weights) + italic 400 | Cuerpo de texto |
 
-Default body font on `<body>` (L38-43) is `DM Sans`. All `h1–h5` inherit `Syne` via rule on L44.
+- Carga única en L10: Google Fonts CSS2 API.
+- Default body font: `<body>` rule L38-43 usa `var(--font-body)`. Headings `h1-h5` usan `var(--font-heading)` (rule L44).
+- **Icons:** Font Awesome 6.5.1 (CDN), carga en L11.
+
+**Cómo cambiar la tipografía:** una sola línea en `:root` (L31 o L32). Si quiere cambiar todo el sitio a Inter, edita `--font-heading: 'Inter', sans-serif;` y listo, 17 elementos se actualizan automáticamente.
 
 ### Other tokens (L27-30)
 
