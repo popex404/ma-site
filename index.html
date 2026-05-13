@@ -190,6 +190,14 @@
       width: 44px;
       height: 44px;
       object-fit: contain;
+      display: block;
+    }
+    /* Footer usa el mismo PNG pero filtrado a blanco porque el fondo del footer es azul oscuro.
+       Cuando llegue del Drive la versión "Negativo" oficial, eliminar el filter. */
+    .footer-brand .logo-img {
+      width: 36px;
+      height: 36px;
+      filter: brightness(0) invert(1);
     }
     .logo-text {
       font-family: var(--font-heading);
@@ -1324,14 +1332,7 @@
     <nav>
       <!-- LOGO – edita nombre aquí -->
       <div class="logo" onclick="showPage('home')">
-        <!-- Logo SVG inline basado en el logo AZ azul -->
-        <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="22" cy="22" r="20" stroke="#09699F" stroke-width="2.5" fill="none"/>
-          <path d="M11 31 L19 13 L27 31" stroke="#2393D1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M13 26 H25" stroke="#2393D1" stroke-width="2" stroke-linecap="round" fill="none"/>
-          <rect x="22" y="15" width="10" height="10" rx="1" stroke="#09699F" stroke-width="2" fill="none"/>
-          <path d="M22 15 L32 25" stroke="#09699F" stroke-width="2" stroke-linecap="round" fill="none"/>
-        </svg>
+        <img src="assets/logo-icono.png" alt="AZ Consultoría" class="logo-img" width="44" height="44">
         <div class="logo-text">
           AZ Consultoría
           <span>azetas365.com</span>
@@ -2292,13 +2293,9 @@
         <!-- Col 1: Brand -->
         <div class="footer-brand">
           <div class="logo">
-            <svg width="36" height="36" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="22" cy="22" r="20" stroke="#2393D1" stroke-width="2.5" fill="none"/>
-              <path d="M11 31 L19 13 L27 31" stroke="#2393D1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              <path d="M13 26 H25" stroke="#2393D1" stroke-width="2" stroke-linecap="round" fill="none"/>
-              <rect x="22" y="15" width="10" height="10" rx="1" stroke="white" stroke-width="2" fill="none"/>
-              <path d="M22 15 L32 25" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
-            </svg>
+            <!-- Footer usa el mismo PNG color con filter:invert para volverlo blanco.
+                 Cuando llegue del Drive la versión "Negativo" oficial, swap a assets/logo-icono-negativo.png y quitar el filter. -->
+            <img src="assets/logo-icono.png" alt="AZ Consultoría" class="logo-img" width="36" height="36">
             <div class="logo-text">
               AZ Consultoría
               <span>azetas365.com</span>
