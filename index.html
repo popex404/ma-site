@@ -792,7 +792,42 @@
       letter-spacing: 1px;
       margin-bottom: 10px;
     }
-    .team-card p { font-size: 13px; color: var(--texto-suave); line-height: 1.6; }
+    .team-card p { font-size: 13px; color: var(--texto-suave); line-height: 1.6; margin: 0; }
+
+    /* === Team card hover-switch (C5) + click-through (C6) === */
+    .team-card { cursor: pointer; position: relative; }
+    .team-content {
+      display: grid;
+      grid-template-areas: "stack";
+      min-height: 96px;
+      align-items: center;
+    }
+    .team-default,
+    .team-detail {
+      grid-area: stack;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .team-detail {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .team-card:hover .team-default {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .team-card:hover .team-detail {
+      opacity: 1;
+      visibility: visible;
+    }
+    .team-cta {
+      margin-top: 12px;
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--cyan);
+    }
 
     /* Contacto Home */
     .contacto-home {
@@ -1576,29 +1611,57 @@
         </div>
         <div class="equipo-grid">
           <!-- Edita nombre, rol y descripción de cada integrante -->
-          <div class="team-card fade-in">
+          <div class="team-card fade-in" onclick="showPage('contable')">
             <div class="team-avatar av-azul">FZ</div>
-            <h4>Francisco Zamora</h4>
-            <div class="team-role">Líder Contable</div>
-            <p>Especialista en grupos económicos y contabilidad estratégica. Convierte números en decisiones.</p>
+            <div class="team-content">
+              <div class="team-default">
+                <h4>Francisco Zamora</h4>
+                <div class="team-role">Líder Contable</div>
+              </div>
+              <div class="team-detail">
+                <p>Especialista en grupos económicos y contabilidad estratégica. Convierte números en decisiones.</p>
+                <div class="team-cta">Ver Contabilidad →</div>
+              </div>
+            </div>
           </div>
-          <div class="team-card fade-in">
+          <div class="team-card fade-in" onclick="showPage('digital')">
             <div class="team-avatar av-cyan">MP</div>
-            <h4>Mario Pérez</h4>
-            <div class="team-role">Digital & Ads</div>
-            <p>Analista de datos, desarrollo web, Google Ads y compras internacionales. Tecnología al servicio de tu negocio.</p>
+            <div class="team-content">
+              <div class="team-default">
+                <h4>Mario Pérez</h4>
+                <div class="team-role">Digital & Ads</div>
+              </div>
+              <div class="team-detail">
+                <p>Analista de datos, desarrollo web, Google Ads y compras internacionales. Tecnología al servicio de tu negocio.</p>
+                <div class="team-cta">Ver Digital →</div>
+              </div>
+            </div>
           </div>
-          <div class="team-card fade-in">
+          <div class="team-card fade-in" onclick="showPage('home');setTimeout(scrollToContact,100);">
             <div class="team-avatar av-naranja">JR</div>
-            <h4>Jerussa</h4>
-            <div class="team-role">Desarrollo de Negocios</div>
-            <p>Primera persona que atenderá tu consulta. Asistente de desarrollo de negocios, coordinación y relaciones.</p>
+            <div class="team-content">
+              <div class="team-default">
+                <h4>Jerussa</h4>
+                <div class="team-role">Desarrollo de Negocios</div>
+              </div>
+              <div class="team-detail">
+                <p>Primera persona que atenderá tu consulta. Asistente de desarrollo de negocios, coordinación y relaciones.</p>
+                <div class="team-cta">Contactar →</div>
+              </div>
+            </div>
           </div>
-          <div class="team-card fade-in">
+          <div class="team-card fade-in" onclick="showPage('laboral')">
             <div class="team-avatar av-verde">CC</div>
-            <h4>Claudio Castro</h4>
-            <div class="team-role">Abogado Laboral</div>
-            <p>Experto en negociaciones colectivas, derecho laboral preventivo y representación en litigios.</p>
+            <div class="team-content">
+              <div class="team-default">
+                <h4>Claudio Castro</h4>
+                <div class="team-role">Abogado Laboral</div>
+              </div>
+              <div class="team-detail">
+                <p>Experto en negociaciones colectivas, derecho laboral preventivo y representación en litigios.</p>
+                <div class="team-cta">Ver Asesoría Legal →</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
