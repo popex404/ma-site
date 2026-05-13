@@ -153,7 +153,7 @@ Single-file SPA. Four `<div id="page-XXX">` containers; only one visible at a ti
 
 | Code | Element | Line | Current content |
 |---|---|---|---|
-| `HD-LOGO-SVG` | Logo SVG markup | 1276-1282 | Inline AZ monogram (blue circle + cyan A + dark square Z) |
+| `HD-LOGO-IMG` | Logo image | 1276 | `<img src="assets/logo-icono.png" alt="AZ Consultoría" class="logo-img" width="44" height="44">` — PNG oficial del brand kit |
 | `HD-BRAND` | Brand name text | 1284 | `AZ Consultoría` |
 | `HD-DOMAIN` | Domain subtext | 1285 | `azetas365.com` |
 | `HD-NAV1` | Nav link 1 | 1291 | `Inicio` |
@@ -175,7 +175,7 @@ Single-file SPA. Four `<div id="page-XXX">` containers; only one visible at a ti
 
 | Code | Element | Line | Current content |
 |---|---|---|---|
-| `FT-LOGO-SVG` | Footer logo SVG | 2215-2221 | Same monogram, cyan + white version |
+| `FT-LOGO-IMG` | Footer logo image | ~2210 | Mismo PNG que header, con CSS `filter: brightness(0) invert(1)` para renderizar blanco sobre el azul oscuro. Swap a `logo-icono-negativo.png` cuando llegue del Drive. |
 | `FT-BRAND` | Brand name | 2223 | `AZ Consultoría` |
 | `FT-DOMAIN` | Domain subtext | 2224 | `azetas365.com` |
 | `FT-DESC` | Brand description paragraph | 2228-2231 | `Equipo multidisciplinario de contabilidad, derecho laboral y marketing digital...` |
