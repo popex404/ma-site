@@ -246,7 +246,10 @@ Single-file SPA. Four `<div id="page-XXX">` containers; only one visible at a ti
 | `H3-METRIC-CTA1` | CTA inside visual | 1542 | `📅 Agenda tu consulta gratuita` |
 | `H3-METRIC-CTA2` | CTA subtext | 1543 | `Sin compromiso · Sin costo` |
 
-### `H4-*` — Equipo (L1550-1588)
+### `H4-*` — Equipo (L1550-1600)
+
+> **Comportamiento desde 2026-05-13:** cada card es clickeable + tiene **hover-switch**. Default visible: nombre + rol (`.team-default`). Hover: bio + CTA (`.team-detail`). Click navega: Francisco → Contable, Mario Pérez → Digital, Claudio → Laboral, Jerussa → home + scroll a contacto. CSS de la interacción: `.team-content` (grid stacking) + `.team-default`/`.team-detail` (opacity/visibility transitions). Pegado al final del bloque `.team-card p` en el `<style>`.
+
 
 | Code | Element | Line | Current content |
 |---|---|---|---|
@@ -269,6 +272,10 @@ Single-file SPA. Four `<div id="page-XXX">` containers; only one visible at a ti
 | `H4-MEMBER4-NAME` | Member 4 name | 1582 | `Claudio Castro` |
 | `H4-MEMBER4-ROLE` | Member 4 role | 1583 | `Abogado Laboral` |
 | `H4-MEMBER4-BIO` | Member 4 bio | 1584 | `Experto en negociaciones colectivas...` |
+| `H4-MEMBER1-CTA` | Member 1 hover CTA | new | `Ver Contabilidad →` |
+| `H4-MEMBER2-CTA` | Member 2 hover CTA | new | `Ver Digital →` |
+| `H4-MEMBER3-CTA` | Member 3 hover CTA | new | `Contactar →` (Jerussa = contacto, no landing) |
+| `H4-MEMBER4-CTA` | Member 4 hover CTA | new | `Ver Asesoría Legal →` |
 
 ### `H5-*` — Contacto + Form (L1590-1676)
 
