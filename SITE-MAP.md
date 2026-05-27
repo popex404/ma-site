@@ -139,11 +139,11 @@ Estos colores **no existen en la marca oficial** pero el sitio los usa funcional
 
 Single-file SPA. Four `<div id="page-XXX">` containers; only one visible at a time. Navigation done in JavaScript via `showPage(name)` which toggles the `.hidden` class.
 
-- Pages: `home`, `contable`, `digital`, `laboral` — declared L2293.
+- Pages: `home`, `contable`, `digital`, `laboral`, `blog` — declaradas en el array `pages` (buscar `const pages =`).
 - Initial page set by URL pathname (`/contable`, `/digital`, `/laboral`, else `home`) — L2392-2396.
 - History API used to update visible URL without reload — L2319-2321.
 - Browser back/forward handled — L2400-2406.
-- Form submission is stubbed (`console.log` only, no backend) — L2343-2369. **TODO: wire to EmailJS / Formspree / backend before launch.**
+- Form submission **wired to WhatsApp** (2026-05-27): `submitForm()` arma un mensaje con los campos y abre `wa.me/56979947557`. Fallback acordado en reunión #2. Falta persistencia a correo/planilla (EmailJS / Formspree / Google Sheets) cuando se defina el servicio.
 
 ---
 
@@ -509,6 +509,27 @@ Single-file SPA. Four `<div id="page-XXX">` containers; only one visible at a ti
 
 ---
 
+## BLOG page — `page-blog` (agregada 2026-05-27)
+
+> **Contenido desacoplado del hosting.** Los posts NO viven en `index.html`. El JS los lee EN VIVO desde una Google Sheet al abrir la página (`loadBlog()` → `fetchSheetPosts()`). Crear un post = agregar una fila en la planilla (vía Google Form) → aparece solo, **sin re-subir el sitio**. Migración futura a Supabase = reemplazar SOLO `fetchSheetPosts()`.
+
+### Estructura
+- `#page-blog` = `.blog-hero` + lista (`#blog-list`) + detalle (`#blog-post`). CSS en un `<style>` propio justo antes del div.
+- JS (buscar `// BLOG —`): `SAMPLE_POSTS` (fallback), `loadBlog`, `renderBlogList`, `showPost(i)`, `renderBody` (markdown-lite + auto-embed de YouTube + imágenes + autolink), `fetchSheetPosts` (endpoint gviz, sin API key).
+- Config arriba del bloque: `BLOG_SHEET_ID` (vacío = usa `SAMPLE_POSTS`) y `BLOG_SHEET_NAME` (pestaña, default `posts`).
+- Mientras `BLOG_SHEET_ID` esté vacío, el blog funciona con 3 posts de muestra (demo listo).
+
+### Activar la fuente real (Google Form + Sheet)
+1. Crear una Google Sheet con una pestaña llamada `posts` y, en la fila 1, estas columnas exactas:
+   `titulo | fecha | autor | imagen | resumen | cuerpo | video | publicado`
+2. Compartir la Sheet como **"Cualquiera con el enlace: Lector"**.
+3. Copiar el ID de la URL (`docs.google.com/spreadsheets/d/ESTE_ID/edit`) y pegarlo en `BLOG_SHEET_ID`.
+4. (Ideal) Crear un Google Form con esos campos y vincular sus respuestas a la misma Sheet → Mario publica desde el Form.
+5. `publicado`: `TRUE` para mostrar, `FALSE`/`NO` para ocultar (borrador).
+6. `cuerpo`: texto normal. Enlace = `[texto](https://...)`. Imagen o video = pegar la URL sola en una línea (YouTube se incrusta; imágenes se muestran). Negrita = `**texto**`.
+
+---
+
 ## Component templates (for adding new items)
 
 ### Add a service card to `H2-*` (Home, Servicios)
@@ -555,13 +576,25 @@ Non-trivial — touches multiple places:
 
 ## TODOs / known issues
 
-- **Form is stubbed**: `submitForm()` at L2343 just logs to console. Wire to EmailJS / Formspree / backend before launch.
-- **No favicon**: missing `<link rel="icon">` in `<head>` (L3-12).
-- **No OG tags**: missing `<meta property="og:title">` / `og:image` / `og:description` etc. for social sharing.
-- **No JSON-LD structured data**: would help SEO for a local business.
-- **`alt` attributes**: SVGs are inline (good), no `<img>` tags found, so no accessibility issue on that front.
-- **The detached HTML comment at L2412-2444** is the original Claude artifact's "how to split into files" guide. Harmless but can be deleted if not needed.
-- **Copyright says `© 2025`** at L2280 — today's date is 2026-05-13. Probably should update.
+> ⚠️ Los números de línea de este doc se generaron con el archivo en 2444 líneas. Tras las ediciones del **2026-05-27** (bloque SEO + Clarity en `<head>`, `scrollToEquipo`, form→WhatsApp) el archivo creció ~70 líneas — los offsets de las tablas de arriba están corridos. Usá los **códigos** (`H1-CTA2`, `FT-COPYRIGHT`...) y grep, no las líneas literales.
+
+### Resuelto el 2026-05-27 (post reunión #2)
+- ✅ **Form wireado a WhatsApp** — ya no es `console.log`. Falta persistencia a correo/planilla.
+- ✅ **Favicon** — `<link rel="icon" href="assets/logo-icono.png">` (reusa el logo, sin archivo nuevo).
+- ✅ **OG + Twitter tags** — para compartir en WhatsApp/Facebook.
+- ✅ **JSON-LD** — `ProfessionalService` con teléfono, email, `areaServed` (La Calera/La Cruz/Valparaíso) para SEO local.
+- ✅ **`<title>`** mejorado con keywords + ubicación.
+- ✅ **Microsoft Clarity** insertado (project `wrjo3ijzn9`).
+- ✅ **Copyright** `© 2025` → `© 2026`.
+- ✅ **`H1-CTA2` "Conocer el equipo"** ahora hace `scrollToEquipo()` (la sección Equipo tiene `id="equipo"`); antes iba al form igual que `H1-CTA1`.
+
+### Pendiente
+- **Google Analytics** — falta el Measurement ID (`G-XXXXXXX`) de Mario/Javier para insertar el tag GA4.
+- **Persistencia del formulario** — el WhatsApp es el fallback; falta correo y/o planilla Excel (EmailJS / Formspree / Google Sheets) — decisión de servicio pendiente.
+- **Reseñas Google (17×5★) + embed de Google Maps** — necesita el contenido de las reseñas y el link/embed del perfil de Google Business.
+- **og:image dedicada** — hoy usa el logo; idealmente un banner 1200×630.
+- **`canonical` / OG `url`** apuntan a `popex404.github.io/ma-site/` — actualizar cuando el sitio migre a `azetas365.com`.
+- **The detached HTML comment** al final del archivo es la guía original del artifact para separar en archivos. Inocuo; borrable.
 
 ---
 <!-- METADATA: type: site-map · version: 1.0 · created: 2026-05-13 · source: MA/ma-site/index.html (2444 lines) -->
